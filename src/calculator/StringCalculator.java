@@ -22,15 +22,11 @@ public class StringCalculator {
 
         int result = 0;
         for (final String s : split) {
-            try {
-                int number = Integer.parseInt(s);
-                if (number < 0) {
-                    throw new IllegalArgumentException("양수를 입력해주세요.");
-                }
-                result += Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("잘못된 숫자가 들어왔습니다.");
+            int number = Integer.parseInt(s);
+            if (number < 0) {
+                throw new IllegalArgumentException("양수를 입력해주세요.");
             }
+            result += Integer.parseInt(s);
         }
         return result;
     }

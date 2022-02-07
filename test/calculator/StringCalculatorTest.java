@@ -3,9 +3,6 @@ package calculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
@@ -37,30 +34,18 @@ public class StringCalculatorTest {
         assertEquals(6, stringCalculator.add("1,2:3"));
     }
 
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void 숫자가_아닌_값_사용() {
-        try{
-            stringCalculator.add("1,2:3:a");
-        } catch (IllegalArgumentException e){
-            assertTrue("잘못된 숫자가 들어왔습니다.".equals(e.getMessage()));
-            return;
-        }
-        assertFalse(true);
+        stringCalculator.add("1,2:3:a");
     }
 
     @Test
-    public void 커스텀_구분자사용(){
+    public void 커스텀_구분자사용() {
         assertEquals(6, stringCalculator.add("//;\n1;2;3"));
     }
 
-    @Test
-    public void 음수가_있을경우(){
-        try{
-            stringCalculator.add("//;\n-1;2;3");
-        } catch (IllegalArgumentException e){
-            assertTrue("양수를 입력해주세요.".equals(e.getMessage()));
-            return;
-        }
-        assertFalse(true);
+    @Test(expected = IllegalArgumentException.class)
+    public void 음수가_있을경우() {
+        stringCalculator.add("//;\n-1;2;3");
     }
 }
