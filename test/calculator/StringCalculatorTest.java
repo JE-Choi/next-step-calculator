@@ -34,7 +34,7 @@ public class StringCalculatorTest {
         assertEquals(6, stringCalculator.add("1,2:3"));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void 숫자가_아닌_값_사용() {
         stringCalculator.add("1,2:3:a");
     }
